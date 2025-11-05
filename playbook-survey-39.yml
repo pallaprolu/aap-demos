@@ -1,0 +1,33 @@
+---
+- name: Debug Variables Playbook
+  hosts: localhost
+  connection: ansible.builtin.local
+  gather_facts: false
+
+  # the playbook will fail if variables are undefined
+  # here we are providing a default mapping
+  # in production we might do this at a lower variable precedence
+  # https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#understanding-variable-precedence 
+  vars:
+    api_token: default
+    secret_pw: default
+    branch_id: default
+    release_major_ver: default
+
+  tasks:
+
+    - name: Debug API Token
+      ansible.builtin.debug:
+        msg: "API Token: {{ api_token }}"
+
+    - name: Debug Secret Password
+      ansible.builtin.debug:
+        msg: "Secret Password: {{ secret_pw }}"
+
+    - name: Debug Branch ID
+      ansible.builtin.debug:
+        msg: "Branch ID: {{ branch_id }}"
+
+    - name: Debug Release Major Ver
+      ansible.builtin.debug:
+        msg: "Release Major Ver: {{ release_major_ver }}"
